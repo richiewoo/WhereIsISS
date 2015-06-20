@@ -1,5 +1,3 @@
-# WhereIsISS
-
 # Overview
 The goal of this project is to download and display the current position of the International Space Station (ISS) on a map.
 
@@ -8,7 +6,7 @@ The goal of this project is to download and display the current position of the 
 3. Automatically update the annotation every second
 4. By tapping on the annotation, the closest city mapping to the latitude/longitude is displayed in a popover. 
 
-Used the follow techniques in this homework.
+#The follow techniques used
 1. Objective-C
 2. MVC patterns
 3. Core location, MapKit Framework
