@@ -23,12 +23,34 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="AJV-6K-hkm"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTN-Z1-CRQ">
+                                <rect key="frame" x="511" y="471" width="20" height="20"/>
+                                <state key="normal" image="icon_location_button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="location" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4hU-aP-sbT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZAU-nj-6SV">
+                                <rect key="frame" x="480" y="511" width="90" height="59"/>
+                                <state key="normal" image="map_setting_view_btn_satellite">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mapStutas:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xwk-1C-1Og"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="En1-FS-5f6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="4p0-Bm-0H1"/>
                             <constraint firstAttribute="centerX" secondItem="En1-FS-5f6" secondAttribute="centerX" id="IeI-70-LWg"/>
+                            <constraint firstItem="pTN-Z1-CRQ" firstAttribute="centerX" secondItem="ZAU-nj-6SV" secondAttribute="centerX" constant="-4" id="LYB-k7-Yib"/>
                             <constraint firstAttribute="centerY" secondItem="En1-FS-5f6" secondAttribute="centerY" id="Lqd-Oc-gb6"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ZAU-nj-6SV" secondAttribute="bottom" constant="30" id="Pcr-zy-oK1"/>
+                            <constraint firstItem="ZAU-nj-6SV" firstAttribute="top" secondItem="pTN-Z1-CRQ" secondAttribute="bottom" constant="20" id="dWH-oa-DaY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZAU-nj-6SV" secondAttribute="trailing" constant="14" id="oyC-Ji-1MS"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="En1-FS-5f6" secondAttribute="bottom" id="rpN-hB-JWD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="En1-FS-5f6" secondAttribute="trailing" constant="-16" id="xsV-EX-9t3"/>
                         </constraints>
@@ -42,4 +64,8 @@
             <point key="canvasLocation" x="343" y="190"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_location_button" width="20" height="20"/>
+        <image name="map_setting_view_btn_satellite" width="90" height="59"/>
+    </resources>
 </document>

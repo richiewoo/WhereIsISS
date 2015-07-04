@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CityAnnotation *cityAnnotation;
 @property (strong, nonatomic) ISSLocationData *locationData;
+@property (nonatomic, assign) BOOL isFirstUpdateMap;
 
 @end
 
@@ -34,6 +35,10 @@
     //KVO- To observe the location change
     [_locationData addObserver:self forKeyPath:LOCATION_DATA_OBSERVE_KEY options:NSKeyValueObservingOptionOld context:nil];
     [_locationData startGetLocation];
+    
+    //[self.mapView addAnnotation:_cityAnnotation];
+    
+    _isFirstUpdateMap = true;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -43,8 +48,12 @@
         [_cityAnnotation setCoordinate:_locationData.location];
         [self.mapView addAnnotation:_cityAnnotation];
         
-        //make map move and the the annotation be in center may be better
-        [self.mapView setCenterCoordinate:_locationData.location animated:YES];
+        if( _isFirstUpdateMap )
+        {
+            //make map move and the the annotation be in center may be better
+            [self.mapView setCenterCoordinate:_locationData.location animated:YES];
+            _isFirstUpdateMap = false;
+        }
     }
 }
 
@@ -57,6 +66,27 @@
     annotationView.image = [UIImage imageNamed:@"icon_iss_img.png"];
     
     return annotationView;
+}
+
+#pragma mark - button action
+
+- (IBAction)location {
+    [self.mapView setCenterCoordinate:_locationData.location animated:YES];
+}
+
+- (IBAction)mapStutas:(UIButton *)sender {
+    
+    if (sender.tag == 0) {
+        sender.tag = 1;
+        self.mapView.mapType = MKMapTypeSatellite;
+        [sender setImage:[UIImage imageNamed:@"map_setting_view_btn_normal"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        sender.tag = 0;
+        self.mapView.mapType = MKMapTypeStandard;
+        [sender setImage:[UIImage imageNamed:@"map_setting_view_btn_satellite"] forState:UIControlStateNormal];
+    }
 }
 
 @end

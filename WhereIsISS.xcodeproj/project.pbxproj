@@ -109,14 +109,9 @@
 		6B63C18E1B28FE1A0065E2EE /* WhereIsISS */ = {
 			isa = PBXGroup;
 			children = (
-				6B63C1931B28FE1A0065E2EE /* AppDelegate.h */,
-				6B63C1941B28FE1A0065E2EE /* AppDelegate.m */,
-				6B63C1961B28FE1A0065E2EE /* MapViewController.h */,
-				6B63C1971B28FE1A0065E2EE /* MapViewController.m */,
-				6B63C1BA1B2910B70065E2EE /* ISSLocationData.h */,
-				6B63C1BB1B2910B70065E2EE /* ISSLocationData.m */,
-				6B63C1BE1B2952AA0065E2EE /* CityAnnotation.h */,
-				6B63C1BF1B2952AA0065E2EE /* CityAnnotation.m */,
+				6B6765E71B477E55006C124B /* Controller */,
+				6B6765E61B477E3E006C124B /* UI */,
+				6B6765E51B477E18006C124B /* Model */,
 				6B63C18F1B28FE1A0065E2EE /* Supporting Files */,
 			);
 			path = WhereIsISS;
@@ -125,6 +120,8 @@
 		6B63C18F1B28FE1A0065E2EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6B63C1931B28FE1A0065E2EE /* AppDelegate.h */,
+				6B63C1941B28FE1A0065E2EE /* AppDelegate.m */,
 				6B63C1991B28FE1A0065E2EE /* Main.storyboard */,
 				6B63C19C1B28FE1A0065E2EE /* Images.xcassets */,
 				6B63C19E1B28FE1A0065E2EE /* LaunchScreen.xib */,
@@ -159,6 +156,33 @@
 				F3F404544290C8F1DB30D125 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6B6765E51B477E18006C124B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6B63C1BA1B2910B70065E2EE /* ISSLocationData.h */,
+				6B63C1BB1B2910B70065E2EE /* ISSLocationData.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6B6765E61B477E3E006C124B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6B63C1BE1B2952AA0065E2EE /* CityAnnotation.h */,
+				6B63C1BF1B2952AA0065E2EE /* CityAnnotation.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		6B6765E71B477E55006C124B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6B63C1961B28FE1A0065E2EE /* MapViewController.h */,
+				6B63C1971B28FE1A0065E2EE /* MapViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
