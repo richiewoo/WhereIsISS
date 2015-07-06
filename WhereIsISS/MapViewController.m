@@ -57,13 +57,13 @@
             _isFirstUpdateMap = false;
         }
         
-        _disLocation.text = [NSString stringWithFormat:@"longitude: %2f, latitude: %2f", _locationData.location.longitude, _locationData.location.latitude];
+        _disLocation.text = [NSString stringWithFormat:@"longitude: %.2f, latitude: %.2f", _locationData.location.longitude, _locationData.location.latitude];
         
         if ( !_isFirstUpdateMap ) {
             CLLocationCoordinate2D *arr = malloc(_locationData.locTrack.count * sizeof(CLLocationCoordinate2D));
-            for (int i = 0; i < _locationData.locTrack.count; i++) {
-                arr[i] = *(CLLocationCoordinate2D *)[_locationData.locTrack[i] bytes];
-            }
+            [_locationData.locTrack enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+                arr[idx] = *(CLLocationCoordinate2D *)[obj bytes];
+            }];
             
             [self.mapView removeOverlay:_locTrack];_locTrack = nil;
             _locTrack = [MKPolyline polylineWithCoordinates:arr count:_locationData.locTrack.count];
