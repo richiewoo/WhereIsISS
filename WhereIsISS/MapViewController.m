@@ -14,9 +14,11 @@
 @interface MapViewController () <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UILabel *disLocation;
 @property (strong, nonatomic) CityAnnotation *cityAnnotation;
 @property (strong, nonatomic) ISSLocationData *locationData;
 @property (nonatomic, assign) BOOL isFirstUpdateMap;
+@property (nonatomic, strong) MKPolyline* locTrack;
 
 @end
 
@@ -36,7 +38,7 @@
     [_locationData addObserver:self forKeyPath:LOCATION_DATA_OBSERVE_KEY options:NSKeyValueObservingOptionOld context:nil];
     [_locationData startGetLocation];
     
-    //[self.mapView addAnnotation:_cityAnnotation];
+    [self.mapView addAnnotation:_cityAnnotation];
     
     _isFirstUpdateMap = true;
 }
@@ -44,15 +46,29 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqual:LOCATION_DATA_OBSERVE_KEY]) {
         
-        // add the annotation
+        // update the location of the annotation
         [_cityAnnotation setCoordinate:_locationData.location];
-        [self.mapView addAnnotation:_cityAnnotation];
         
         if( _isFirstUpdateMap )
         {
             //make map move and the the annotation be in center may be better
             [self.mapView setCenterCoordinate:_locationData.location animated:YES];
+
             _isFirstUpdateMap = false;
+        }
+        
+        _disLocation.text = [NSString stringWithFormat:@"longitude: %2f, latitude: %2f", _locationData.location.longitude, _locationData.location.latitude];
+        
+        if ( !_isFirstUpdateMap ) {
+            CLLocationCoordinate2D *arr = malloc(_locationData.locTrack.count * sizeof(CLLocationCoordinate2D));
+            for (int i = 0; i < _locationData.locTrack.count; i++) {
+                arr[i] = *(CLLocationCoordinate2D *)[_locationData.locTrack[i] bytes];
+            }
+            
+            [self.mapView removeOverlay:_locTrack];_locTrack = nil;
+            _locTrack = [MKPolyline polylineWithCoordinates:arr count:_locationData.locTrack.count];
+            [self.mapView addOverlay:_locTrack];
+            free(arr);
         }
     }
 }
@@ -66,6 +82,22 @@
     annotationView.image = [UIImage imageNamed:@"icon_iss_img.png"];
     
     return annotationView;
+}
+
+//- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+//    MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
+//    polylineView.strokeColor = [UIColor redColor];
+//    polylineView.lineWidth = 1.0;
+//    
+//    return polylineView;
+//}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay
+{
+    MKPolylineRenderer *r = [[MKPolylineRenderer alloc]initWithOverlay:overlay];
+    r.strokeColor = [UIColor greenColor];
+    
+    return r;
 }
 
 #pragma mark - button action

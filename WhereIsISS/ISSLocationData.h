@@ -14,6 +14,7 @@
 @interface ISSLocationData : NSObject
 
 @property(nonatomic, assign) CLLocationCoordinate2D location;//The ISS location
+@property(nonatomic, strong) NSMutableArray *locTrack;//to record the track of ISS location--NSData
 
 - (void)startGetLocation;
 - (void)stopGetLocation;

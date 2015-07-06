@@ -23,8 +23,8 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="AJV-6K-hkm"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTN-Z1-CRQ">
-                                <rect key="frame" x="511" y="471" width="20" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTN-Z1-CRQ">
+                                <rect key="frame" x="511" y="469" width="20" height="22"/>
                                 <state key="normal" image="icon_location_button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -41,21 +41,31 @@
                                     <action selector="mapStutas:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xwk-1C-1Og"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsy-3f-hU5">
+                                <rect key="frame" x="0.0" y="10" width="600" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="En1-FS-5f6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="4p0-Bm-0H1"/>
+                            <constraint firstItem="Tsy-3f-hU5" firstAttribute="centerX" secondItem="En1-FS-5f6" secondAttribute="centerX" id="5Sl-Xp-uE3"/>
                             <constraint firstAttribute="centerX" secondItem="En1-FS-5f6" secondAttribute="centerX" id="IeI-70-LWg"/>
+                            <constraint firstItem="Tsy-3f-hU5" firstAttribute="width" secondItem="En1-FS-5f6" secondAttribute="width" id="L7L-Yg-boC"/>
                             <constraint firstItem="pTN-Z1-CRQ" firstAttribute="centerX" secondItem="ZAU-nj-6SV" secondAttribute="centerX" constant="-4" id="LYB-k7-Yib"/>
                             <constraint firstAttribute="centerY" secondItem="En1-FS-5f6" secondAttribute="centerY" id="Lqd-Oc-gb6"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ZAU-nj-6SV" secondAttribute="bottom" constant="30" id="Pcr-zy-oK1"/>
                             <constraint firstItem="ZAU-nj-6SV" firstAttribute="top" secondItem="pTN-Z1-CRQ" secondAttribute="bottom" constant="20" id="dWH-oa-DaY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZAU-nj-6SV" secondAttribute="trailing" constant="14" id="oyC-Ji-1MS"/>
+                            <constraint firstItem="Tsy-3f-hU5" firstAttribute="top" secondItem="En1-FS-5f6" secondAttribute="top" constant="10" id="rAL-Dr-5mz" userLabel="Top Alignment - (10) - Label - Map View"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="En1-FS-5f6" secondAttribute="bottom" id="rpN-hB-JWD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="En1-FS-5f6" secondAttribute="trailing" constant="-16" id="xsV-EX-9t3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="disLocation" destination="Tsy-3f-hU5" id="OYc-b7-Mmq"/>
                         <outlet property="mapView" destination="En1-FS-5f6" id="vcA-mT-MvU"/>
                     </connections>
                 </viewController>

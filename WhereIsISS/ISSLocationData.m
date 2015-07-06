@@ -45,6 +45,7 @@
 
 @implementation ISSLocationData
 @synthesize location;
+@synthesize locTrack;
 
 - (instancetype)init{
     self = [super init];
@@ -52,6 +53,8 @@
         _fetchFlag = false;
         self.location = CLLocationCoordinate2DMake(37.786996, -122.440100);//Yes, I am in San Frnacisco,
         [self startLocationReq];//where are you?
+        
+        self.locTrack = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -74,6 +77,10 @@
                         NSDictionary *iss_position = loc[KEY_LOCDATA_ISS_POSITION];
                         selfWeak.location = CLLocationCoordinate2DMake([iss_position[KEY_LOCDATA_POSITION_LATITUDE] doubleValue], [iss_position[KEY_LOCDATA_POSITION_LANGITUDE] doubleValue]);
                         
+                        CLLocationCoordinate2D l = selfWeak.location;
+                        CLLocationCoordinate2D *lp = &l;
+                        NSData *d = [NSData dataWithBytes:lp length:sizeof(CLLocationCoordinate2D)];
+                        [selfWeak.locTrack addObject:d];
                     }
                 }
             }
